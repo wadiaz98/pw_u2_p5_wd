@@ -1,6 +1,8 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg="Hola 2"/>
+  <HelloWorld msg="Hola 3"/>
 </template>
 
 <script>
