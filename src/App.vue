@@ -1,14 +1,14 @@
 <template>
-  <Calculadora></Calculadora>
+  <Pregunta/>
 </template>
 
 <script>
-import Calculadora from "./components/calculadora.vue";
+import Pregunta from "./components/Pregunta.vue";
 
 export default {
   name: "App",
   components: {
-    Calculadora,
+    Pregunta,
   },
   methods: {
     calcularValor() {
@@ -21,8 +21,6 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
   text-align: center;
   align-items: center;
   -webkit-font-smoothing: antialiased;
