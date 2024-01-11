@@ -1,28 +1,27 @@
 <template>
-  <Pregunta/>
+  <Pokemon/>
 </template>
 
 <script>
-import Pregunta from "./components/Pregunta.vue";
+import Pokemon from "./components/pokemon.vue";
 
 export default {
   name: "App",
   components: {
-    Pregunta,
+    Pokemon,
   },
   methods: {
-    calcularValor() {
-      return 5 + 5 + 10;
-    },
+  
   },
 };
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+
   text-align: center;
   align-items: center;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
