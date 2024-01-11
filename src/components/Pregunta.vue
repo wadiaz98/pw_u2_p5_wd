@@ -1,14 +1,13 @@
 <template>
-  <img
-    src="https://yesno.wtf/assets/no/28-e19b6f658f621f7c5980a33f8249a65d.gif"
-    alt="No se puede visualizar la imagen"
-  />
+  <img v-if="img" v-bind:src="img" alt="No se puede visualizar la imagen" />
   <div class="dark"></div>
   <div class="container">
     <input v-model="pregunta" type="text" />
     <p>Recuerda que debes terminar con el signo de interrogación (?)</p>
-    <h2>{{ pregunta }}</h2>
-    <h1>Si, NO........</h1>
+    <div v-if="preguntaValida ===true">
+      <h2>{{ pregunta }}</h2>
+      <h1>{{ respuesta }}</h1>
+    </div>
   </div>
 </template>
 
@@ -16,24 +15,42 @@
 export default {
   data() {
     return {
-      pregunta: "Voy a ser millonario",
+      pregunta: null,
+      respuesta: null,
+      img: null,
+      preguntaValida: false,
     };
   },
   methods: {
-    async consumirApi(){
-        const {answer,image} = await fetch('https://yesno.wtf/api').then(respuesta=>respuesta.json())
-        console.log(answer)
-        console.log(image)
+    async consumirApi() {
+      this.respuesta = "Pensando."
+      this.respuesta = "Pensando.."
+      const { answer, image } = await fetch("https://yesno.wtf/api").then(
+        (respuesta) => respuesta.json()
+      );
+      console.log(answer);
+      console.log(image);
+      this.respuesta = "Pensando..."
+      this.respuesta = "Pensando...."
+
+      const nuevo  = answer === 'yes'? 'SI!': 'NO!';
+      this.respuesta = nuevo;
+      this.img = image;
+    },
+    contruirURLAPI(id){
+      return "https://pokeapi.co/api/v2/pokemon/" + id
     },
   },
   watch: {
-    pregunta(value, oldValue){
-        console.log(value);
-        console.log(oldValue);
-        if(!value.includes('?')) return;
-        //Consumo del API:
-        this.consumirApi()
-    }
+    pregunta(value, oldValue) {
+      this.preguntaValida = false
+      console.log(value);
+      console.log(oldValue);
+      if (!value.includes("?")) return;
+      //Consumo del API:
+      this.consumirApi();
+      this.preguntaValida = true
+    },
   },
 };
 </script>
